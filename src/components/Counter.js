@@ -1,0 +1,46 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+const containerStyle = {
+  display: "flex",
+};
+const buttonStyle = {
+  fontSize: "1.5rem",
+  width: "40px",
+  height: "40px",
+};
+
+class Counter extends Component {
+  // actions
+  increment = () => {
+    this.props.dispatch({ type: "INCREMENT" });
+  };
+  decrement = () => {
+    this.props.dispatch({ type: "DECREMENT" });
+  };
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>{this.props.count}</h1>
+          <div style={containerStyle}>
+            <button onClick={this.decrement} type="button" style={buttonStyle}>
+              -
+            </button>
+            <button onClick={this.increment} type="button" style={buttonStyle}>
+              +
+            </button>
+          </div>
+        </header>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.count,
+  };
+};
+
+export default connect(mapStateToProps)(Counter);
