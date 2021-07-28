@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { decrement } from "../redux/actions/actions";
 
 const containerStyle = {
   display: "flex",
@@ -24,7 +25,14 @@ class Counter extends Component {
         <header className="App-header">
           <h1>{this.props.count}</h1>
           <div style={containerStyle}>
-            <button onClick={this.decrement} type="button" style={buttonStyle}>
+            <button
+              onClick={this.decrement}
+              onClick={() => {
+                console.log(this.decrement);
+              }}
+              type="button"
+              style={buttonStyle}
+            >
               -
             </button>
             <button onClick={this.increment} type="button" style={buttonStyle}>

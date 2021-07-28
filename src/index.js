@@ -5,7 +5,7 @@ import Router from "./components/Router";
 import { Provider } from "react-redux";
 // needed this import to stop the regenerator runtime error and because babel polyfill is deprecated
 import "regenerator-runtime/runtime";
-import store from "./store";
+import store from "./redux/store/store";
 
 ReactDOM.render(
   <React.StrictMode>
