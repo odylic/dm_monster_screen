@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import MainContainer from "../redux/containers/MainContainer";
 import ReduxToolKitApp from "../redux-toolkit/components/ReduxToolKitApp";
+import MonsterList from '../dm_monster_screen/components/App'
 
 const initialState = {
   count: 0,
@@ -37,13 +38,15 @@ class App extends Component {
     return (
       <div className="App">
         {/* this store in this file */}
-        <Provider store={store}>
+        {/* <Provider store={store}>
           <Counter />
-        </Provider>
+        </Provider> */}
         {/* mainContainer's store is called in index.js */}
-        <MainContainer />
+        {/* <MainContainer /> */}
         {/* redux tool kit version */}
-        <ReduxToolKitApp />
+        {/* <ReduxToolKitApp /> */}
+        {/* dm monster screen */}
+        <MonsterList />
       </div>
     );
   }
