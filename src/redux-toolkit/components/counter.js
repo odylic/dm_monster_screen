@@ -4,7 +4,8 @@ import {
   increment,
   decrement,
   selectCounter,
-  incrementByAmount,
+  decrementByAmount,
+  setAmount,
 } from "../store/counterSlice";
 
 const containerStyle = {
@@ -19,12 +20,12 @@ const buttonStyle = {
 export default function counter() {
   const dispatch = useDispatch();
   const count = useSelector(selectCounter);
-  const [incrementAmount, setIncrementAmount] = useState("2");
+  const [decrementAmount, setDecrementAmount] = useState("");
   const resetInput = (e) => {
     e.target.value = "";
   };
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const decrementValue = Number(decrementAmount) || 0;
 
   return (
     <div className="App">
@@ -48,13 +49,17 @@ export default function counter() {
           </button>
         </div>
       </header>
+      Set Total Hp
+      <br></br>
+      <input onChange={(e) => dispatch(setAmount(Number(e.target.value)))} />
+      <br></br>
       <input
-        value={incrementAmount}
+        value={decrementAmount}
         onFocus={(e) => resetInput(e)}
-        onChange={(e) => setIncrementAmount(e.target.value)}
+        onChange={(e) => setDecrementAmount(e.target.value)}
       />
-      <button onClick={() => dispatch(incrementByAmount(incrementValue))}>
-        Add Amount
+      <button onClick={() => dispatch(decrementByAmount(decrementValue))}>
+        Set Damage
       </button>
     </div>
   );

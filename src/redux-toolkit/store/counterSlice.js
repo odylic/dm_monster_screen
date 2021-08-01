@@ -14,13 +14,18 @@ export const counterSlice = createSlice({
     decrement: (state, action) => {
       state.count -= 1;
     },
-    incrementByAmount: (state, action) => {
-      state.count += action.payload;
+    decrementByAmount: (state, action) => {
+      state.count -= action.payload;
+      if (state.count < 0) state.count = 0;
+    },
+    setAmount: (state, action) => {
+      state.count = action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, decrementByAmount, setAmount } =
+  counterSlice.actions;
 
 export const selectCounter = (state) => state.counter.count;
 
