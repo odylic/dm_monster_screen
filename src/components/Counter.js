@@ -22,14 +22,12 @@ class Counter extends Component {
   render() {
     return (
       <div className="App">
+        Counter.js  
         <header className="App-header">
           <h1>{this.props.count}</h1>
           <div style={containerStyle}>
             <button
               onClick={this.decrement}
-              onClick={() => {
-                console.log(this.decrement);
-              }}
               type="button"
               style={buttonStyle}
             >

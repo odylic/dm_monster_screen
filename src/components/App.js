@@ -4,6 +4,7 @@ import Counter from "./Counter";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import MainContainer from "../redux/containers/MainContainer";
+import ReduxToolKitApp from "../redux-toolkit/components/ReduxToolKitApp";
 
 const initialState = {
   count: 0,
@@ -41,6 +42,8 @@ class App extends Component {
         </Provider>
         {/* mainContainer's store is called in index.js */}
         <MainContainer />
+        {/* redux tool kit version */}
+        <ReduxToolKitApp />
       </div>
     );
   }
