@@ -7,22 +7,29 @@ export default function MonsterList() {
   const dispatch = useDispatch();
 
   const monsterList = useSelector(selectMonster);
+
   const createMonster = () => {
     dispatch(
       addMonster({
+        hp: 0,
         id: Date.now(),
       })
     );
   };
 
   return (
-    <div>
-      MonsterList <br></br>
-      <button onClick={createMonster}>Add Monster</button>
+    <div className="app">
+      <header className="header">
+        <h1>MonsterList</h1>
+        <br></br>
+        <button onClick={createMonster}>Add Monster</button>
+      </header>
       <br></br>
-      {monsterList.map((monster) => {
-        return <Monster key={monster.id} id={monster.id} />;
-      })}
+      <div className="monsterListContainer">
+        {monsterList.map((monster) => {
+          return <Monster key={monster.id} id={monster.id} hp={monster.hp} />;
+        })}
+      </div>
     </div>
   );
 }

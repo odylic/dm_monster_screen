@@ -3,3 +3,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+.monsterListContainer { 
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(219, 219, 219);
+}
+
+.header {
+  text-align: center;
+
+  button {
+    padding: 15px;
+    border-radius: 5px;
+  }
+}
+
+.monsterItem {
+  margin-right: 5px;
+}
