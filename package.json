@@ -7,7 +7,7 @@
     "start": "nodemon ./server/server.js",
     "build": "webpack --watch",
     "test": "jest --verbose",
-   "heroku-postbuild": "webpack"
+    "heroku-postbuild": "webpack"
   },
   "repository": {
     "type": "git",

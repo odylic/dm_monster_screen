@@ -51,6 +51,7 @@ export default function Monster(id) {
             setInput(e.target.value);
           }}
         ></input>
+        <br></br>
         <button
           type="reset"
           disabled={!input}
