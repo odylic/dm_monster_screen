@@ -15,6 +15,8 @@ export default function InitiativeOrder() {
   const [initiative, setInitiative] = useState("");
   const [visibility, setVisibility] = useState("initiativeContainerHidden");
 
+  const initiativeValue = parseInt(initiative) || 0;
+
   const resetInput = (e) => {
     e.target.placeholder = "";
   };
@@ -82,7 +84,7 @@ export default function InitiativeOrder() {
                 resetValue(e);
               }}
               onChange={(e) => {
-                if (!isNaN(e.target.value)) setInitiative(e.target.value);
+                setInitiative(e.target.value);
               }}
             ></input>
             <button
@@ -91,7 +93,7 @@ export default function InitiativeOrder() {
                 dispatch(
                   addToInitiativeOrder({
                     name: name,
-                    initiative: initiative,
+                    initiative: initiativeValue,
                     id: Date.now(),
                   })
                 );
