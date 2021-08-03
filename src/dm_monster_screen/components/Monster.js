@@ -74,9 +74,10 @@ export default function Monster(id) {
           <br></br>
           <button
             className="healButton"
-            type="reset"
+            type="submit"
             disabled={!heal}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               dispatch(
                 incrementByAmount({ id: id.id, damage: incrementValue })
               );
@@ -101,9 +102,10 @@ export default function Monster(id) {
           <br></br>
           <button
             className="damageButton"
-            type="reset"
+            type="submit"
             disabled={!input}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               dispatch(
                 decrementByAmount({ id: id.id, damage: decrementValue })
               );

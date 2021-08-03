@@ -96,7 +96,7 @@ export default function InitiativeOrder() {
                 setName("");
                 setInitiative("");
               }}
-              type="reset"
+              type="submit"
             >
               Enter
             </button>
