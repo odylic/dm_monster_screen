@@ -29,7 +29,7 @@ export default function Monster(id) {
         placeholder="enter monster name"
         onFocus={(e) => resetInput(e)}
       ></input>
-      <br></br>
+
       <input
         placeholder="set monster hp"
         onFocus={(e) => {
@@ -40,7 +40,7 @@ export default function Monster(id) {
           dispatch(setAmount({ hp: e.target.value, id: id.id }));
         }}
       ></input>
-      <br></br>
+
       <form>
         <input
           type="text"
@@ -53,6 +53,7 @@ export default function Monster(id) {
         ></input>
         <br></br>
         <button
+          className='damageButton'
           type="reset"
           disabled={!input}
           onClick={() => {
@@ -62,8 +63,8 @@ export default function Monster(id) {
         >
           Set Damage
         </button>
+        <br></br>
       </form>
-      <br></br>
     </div>
   );
 }

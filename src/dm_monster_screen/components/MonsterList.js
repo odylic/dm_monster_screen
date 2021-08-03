@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMonster, selectMonster } from "../store/monsterSlice";
 import Monster from "./Monster";
+import InitiativeOrder from "./InitiativeOrder";
 
 export default function MonsterList() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function MonsterList() {
         <br></br>
         <button onClick={createMonster}>Add Monster</button>
       </header>
+      <InitiativeOrder />
       <br></br>
       <div className="monsterListContainer">
         {monsterList.map((monster) => {
