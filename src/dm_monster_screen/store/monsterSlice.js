@@ -38,6 +38,13 @@ const monsterSlice = createSlice({
         if (monster.hp < 0) monster.hp = 0;
       });
     },
+    incrementByAmount: (state, action) => {
+      state.monsterList.map((monster) => {
+        if (action.payload.id === monster.id)
+          monster.hp += action.payload.damage;
+        if (monster.hp < 0) monster.hp = 0;
+      });
+    },
     addToInitiativeOrder: (state, action) => {
       state.initiativeOrder.push(action.payload);
     },
@@ -63,6 +70,7 @@ export const {
   addToInitiativeOrder,
   sortInitiativeOrder,
   deleteFromInitiativeOrder,
+  incrementByAmount,
 } = monsterSlice.actions;
 
 export const selectMonster = (state) => state.monsters.monsterList;

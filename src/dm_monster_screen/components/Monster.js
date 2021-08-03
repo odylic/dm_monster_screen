@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   getId,
   decrementByAmount,
+  incrementByAmount,
   setAmount,
   deleteMonster,
 } from "../store/monsterSlice";
@@ -11,6 +12,10 @@ export default function Monster(id) {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState();
+  const [heal, setHeal] = useState();
+  const [incrementAmount, setIncrementAmount] = useState("");
+
+  const incrementValue = Number(incrementAmount) || 0;
 
   const [decrementAmount, setDecrementAmount] = useState("");
   const decrementValue = Number(decrementAmount) || 0;
@@ -52,9 +57,36 @@ export default function Monster(id) {
             resetValue(e);
           }}
           onChange={(e) => {
-            dispatch(setAmount({ hp: e.target.value, id: id.id }));
+            dispatch(setAmount({ hp: Number(e.target.value), id: id.id }));
           }}
         ></input>
+
+        <form>
+          <input
+            type="text"
+            value={heal}
+            onFocus={(e) => resetValue(e)}
+            onChange={(e) => {
+              setIncrementAmount(e.target.value);
+              setHeal(e.target.value);
+            }}
+          ></input>
+          <br></br>
+          <button
+            className="healButton"
+            type="reset"
+            disabled={!heal}
+            onClick={() => {
+              dispatch(
+                incrementByAmount({ id: id.id, damage: incrementValue })
+              );
+              setHeal("");
+            }}
+          >
+            Set Heal
+          </button>
+          <br></br>
+        </form>
 
         <form>
           <input
