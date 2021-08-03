@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getId, decrementByAmount, setAmount } from "../store/monsterSlice";
+import {
+  getId,
+  decrementByAmount,
+  setAmount,
+  deleteMonster,
+} from "../store/monsterSlice";
 
 export default function Monster(id) {
   const dispatch = useDispatch();
@@ -23,48 +28,61 @@ export default function Monster(id) {
   };
 
   return (
-    <div className='monsterItem'>
-      <h1>{id.hp}</h1>
-      <input
-        placeholder="enter monster name"
-        onFocus={(e) => resetInput(e)}
-      ></input>
-
-      <input
-        placeholder="set monster hp"
-        onFocus={(e) => {
-          resetInput(e);
-          resetValue(e);
+    <div className="grid">
+      <button
+        className="closeMonsterButton"
+        onClick={(e) => {
+          e.preventDefault();
+          dispatch(deleteMonster(id.id));
         }}
-        onChange={(e) => {
-          dispatch(setAmount({ hp: e.target.value, id: id.id }));
-        }}
-      ></input>
-
-      <form>
+      >
+        x
+      </button>
+      <div className="monsterItem">
+        <h1>{id.hp}</h1>
         <input
-          type="text"
-          value={input}
-          onFocus={(e) => resetValue(e)}
+          placeholder="enter monster name"
+          onFocus={(e) => resetInput(e)}
+        ></input>
+
+        <input
+          placeholder="set monster hp"
+          onFocus={(e) => {
+            resetInput(e);
+            resetValue(e);
+          }}
           onChange={(e) => {
-            setDecrementAmount(e.target.value);
-            setInput(e.target.value);
+            dispatch(setAmount({ hp: e.target.value, id: id.id }));
           }}
         ></input>
-        <br></br>
-        <button
-          className='damageButton'
-          type="reset"
-          disabled={!input}
-          onClick={() => {
-            dispatch(decrementByAmount({ id: id.id, damage: decrementValue }));
-            setInput("");
-          }}
-        >
-          Set Damage
-        </button>
-        <br></br>
-      </form>
+
+        <form>
+          <input
+            type="text"
+            value={input}
+            onFocus={(e) => resetValue(e)}
+            onChange={(e) => {
+              setDecrementAmount(e.target.value);
+              setInput(e.target.value);
+            }}
+          ></input>
+          <br></br>
+          <button
+            className="damageButton"
+            type="reset"
+            disabled={!input}
+            onClick={() => {
+              dispatch(
+                decrementByAmount({ id: id.id, damage: decrementValue })
+              );
+              setInput("");
+            }}
+          >
+            Set Damage
+          </button>
+          <br></br>
+        </form>
+      </div>
     </div>
   );
 }

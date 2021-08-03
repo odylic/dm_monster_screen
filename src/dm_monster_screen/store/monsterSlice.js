@@ -12,6 +12,11 @@ const monsterSlice = createSlice({
     addMonster: (state, action) => {
       state.monsterList.push(action.payload);
     },
+    deleteMonster: (state, action) => {
+      state.monsterList = state.monsterList.filter(
+        (item) => item.id !== action.payload
+      );
+    },
     getId: (state, action) => {
       state.monsterList.map((monster) => {
         if (action.payload === monster.id) {
@@ -41,16 +46,23 @@ const monsterSlice = createSlice({
         return b.initiative - a.initiative;
       });
     },
+    deleteFromInitiativeOrder: (state, action) => {
+      state.initiativeOrder = state.initiativeOrder.filter(
+        (item) => item.id !== action.payload
+      );
+    },
   },
 });
 
 export const {
   addMonster,
+  deleteMonster,
   getId,
   decrementByAmount,
   setAmount,
   addToInitiativeOrder,
   sortInitiativeOrder,
+  deleteFromInitiativeOrder,
 } = monsterSlice.actions;
 
 export const selectMonster = (state) => state.monsters.monsterList;

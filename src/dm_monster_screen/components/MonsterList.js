@@ -20,12 +20,12 @@ export default function MonsterList() {
 
   return (
     <div className="app">
+      <InitiativeOrder />
       <header className="header">
         <h1>MonsterList</h1>
         <br></br>
         <button onClick={createMonster}>Add Monster</button>
       </header>
-      <InitiativeOrder />
       <br></br>
       <div className="monsterListContainer">
         {monsterList.map((monster) => {
