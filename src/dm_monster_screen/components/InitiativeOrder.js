@@ -81,7 +81,11 @@ export default function InitiativeOrder() {
                 resetInput(e);
                 resetValue(e);
               }}
-              onChange={(e) => setInitiative(e.target.value)}
+              onChange={(e) => {
+                if (Number(e.target.value)) {
+                  setInitiative(e.target.value);
+                }
+              }}
             ></input>
             <button
               disabled={!name || !initiative}
