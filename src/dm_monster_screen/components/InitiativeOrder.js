@@ -82,9 +82,7 @@ export default function InitiativeOrder() {
                 resetValue(e);
               }}
               onChange={(e) => {
-                if (Number(e.target.value)) {
-                  setInitiative(e.target.value);
-                }
+                if (!isNaN(e.target.value)) setInitiative(e.target.value);
               }}
             ></input>
             <button
