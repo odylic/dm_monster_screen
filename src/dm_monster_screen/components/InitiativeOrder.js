@@ -5,9 +5,11 @@ import {
   addToInitiativeOrder,
   sortInitiativeOrder,
   deleteFromInitiativeOrder,
+  setInitiativeOrder,
 } from "../store/monsterSlice";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function InitiativeOrder() {
   const dispatch = useDispatch();
@@ -26,6 +28,25 @@ export default function InitiativeOrder() {
   };
 
   const initiativeOrder = useSelector(selectInitiativeOrder);
+
+  // keeps the order
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  // const [list, setList] = useState();
+
+  const onEnd = (result) => {
+    dispatch(
+      setInitiativeOrder(
+        reorder(initiativeOrder, result.source.index, result.destination.index)
+      )
+    );
+  };
 
   return (
     <div>
@@ -105,24 +126,47 @@ export default function InitiativeOrder() {
               Enter
             </button>
           </form>
-          <div className="initiativeOrderList">
-            {initiativeOrder.map((item, index) => (
-              <div className="initiativeItem" key={item.id}>
-                <div className="itemName">{item.name}</div>
-                <div className="itemInitiative">{item.initiative}</div>
 
-                <button
-                  className="initiativeButton"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(deleteFromInitiativeOrder(item.id));
-                  }}
-                >
-                  x
-                </button>
-              </div>
-            ))}
-          </div>
+          <DragDropContext onDragEnd={onEnd}>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef} className="initiativeOrderList">
+                  {initiativeOrder.map((item, index) => (
+                    <Draggable
+                      draggableId={String(item.id)}
+                      key={item.id}
+                      index={index}
+                    >
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="initiativeItem"
+                        >
+                          <div className="itemName">{item.name}</div>
+                          <div className="itemInitiative">
+                            {item.initiative}
+                          </div>
+
+                          <button
+                            className="initiativeButton"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              dispatch(deleteFromInitiativeOrder(item.id));
+                            }}
+                          >
+                            x
+                          </button>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </div>

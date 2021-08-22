@@ -56,10 +56,10 @@
 .initiativeContainerHidden {
   display: flex;
   position: fixed;
-  left: 0;
+  left: 90vw;
   top: 0;
-  transform: translate3d(90vw, 0, 0);
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  // transform: translate3d(90vw, 0, 0);
+  // transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   width: 20vw;
   height: 100vh;
 
@@ -73,10 +73,10 @@
 
 .initiativeContainerShown {
   position: fixed;
-  left: 0;
+  left: 80vw;
   top: 0;
-  transform: translate3d(80vw, 0, 0);
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  // transform: translate3d(80vw, 0, 0);
+  // transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   width: 20vw;
   height: 100vh;
   background-color: rgb(163, 163, 163);
